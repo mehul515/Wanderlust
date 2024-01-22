@@ -14,6 +14,7 @@ if(process.env.NODE_ENV != "production"){
 }
 
 const dbUrl = process.env.MONGO_URI ;
+const port = 8080;
 
 const session = require("express-session")
 const MongoStore = require('connect-mongo');
@@ -105,6 +106,6 @@ app.use((err, req, res, next) => {
 })
 
 
-app.listen(port = process.env.PORT || 3000, () => {
+app.listen(port || 3000, () => {
     console.log(`Server Runnning at port ${port}...`);
 })
