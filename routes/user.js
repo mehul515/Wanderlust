@@ -1,9 +1,17 @@
 const express = require("express");
 const router = express.Router({ mergeParams: true });
 const User = require("../models/user.js");
+const Listing = require("../models/listing.js");
 const wrapAsync = require("../utils/wrapAsync");
 const passport = require("passport");
 const {saveRedirectUrl} = require("../middleware.js")
+
+
+router.get("/", wrapAsync(async (req, res) => {
+    const allListings = await Listing.find({})
+    res.render("Listing/index.ejs", { allListings })
+}))
+
 
 
 router.get("/signup", (req, res) => {
